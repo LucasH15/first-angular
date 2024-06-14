@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
                 faker.lorem.words({ min: 1, max: 5 }),
                 faker.lorem.paragraph(),
                 faker.image.url(),
-                faker.date.anytime(),
+                faker.date.past(),
                 faker.number.int(200)
             );
 

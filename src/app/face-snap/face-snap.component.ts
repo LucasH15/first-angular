@@ -1,18 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgStyle } from '@angular/common';
+import { DatePipe, NgStyle, TitleCasePipe } from '@angular/common';
 import { FaceSnap } from '../models/face-snap';
 
 @Component({
     selector: 'app-face-snap',
     standalone: true,
     imports: [
-        NgStyle
+        NgStyle,
+        TitleCasePipe,
+        DatePipe
     ],
     templateUrl: './face-snap.component.html',
     styleUrl: './face-snap.component.scss',
     host: {
         '[class.face-snap-card]': 'true',
-    },
+        '[class.snapped]': 'hasSnaps'
+    }
 })
 export class FaceSnapComponent implements OnInit {
     @Input() faceSnap!: FaceSnap;
@@ -21,7 +24,6 @@ export class FaceSnapComponent implements OnInit {
     buttonTxt!: string;
 
     ngOnInit(): void {
-        console.log(this.faceSnap);
         this.hasSnaps = false;
         this.buttonTxt = 'Oh Snap!';
     }
