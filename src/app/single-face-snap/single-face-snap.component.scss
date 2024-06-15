@@ -23,3 +23,15 @@
         margin-right: 15px;
     }
 }
+
+:host-context(.snapped) {
+    background-color: rgba(lightgreen, 0.4);
+    color: darkgreen;
+
+    button {
+        color: darkgreen;
+        border-color: darkgreen;
+
+        box-shadow: 0 0 0 1px darkgreen;
+    }
+}

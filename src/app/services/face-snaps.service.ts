@@ -1,33 +1,37 @@
 import { Injectable } from '@angular/core';
+
 import { FaceSnap } from '../models/face-snap';
-import { faker } from '@faker-js/faker/locale/fr';
+import { SnapType } from '../models/snap-type.type';
+import faceSnapsData from '../datas/face-snaps.json';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FaceSnapsService {
-    private faceSnaps: () => FaceSnap[] = () => {
-        const snaps = [];
-        for (let i = 0; i < 6; i++) {
-            const faceSnap = new FaceSnap(
-                faker.lorem.words({ min: 1, max: 5 }),
-                faker.lorem.paragraph(),
-                faker.image.url(),
-                faker.date.past(),
-                faker.number.int(200)
-            );
-
-            if (faker.datatype.boolean()) {
-                faceSnap.setLocation(faker.location.city());
-            }
-
-            snaps.push(faceSnap);
-        }
-
-        return snaps;
-    }
+    private faceSnaps: FaceSnap[] =
+        faceSnapsData.map(faceSnap => {
+            const { title, description, imageUrl, creatingAt, snaps, location} = faceSnap;
+            return new FaceSnap(title, description, imageUrl, new Date(creatingAt), snaps, location || undefined);
+        });
 
     getFaceSnaps(): FaceSnap[] {
-        return [...this.faceSnaps()];
+        console.log(this.faceSnaps);
+        return [...this.faceSnaps];
+    }
+
+    getFaceSnapById(faceSnapId: string): FaceSnap {
+       const foundFaceSnap = this.faceSnaps.find(faceSnap => faceSnap.id === faceSnapId);
+
+       if (!foundFaceSnap) {
+           throw new Error('No face snap found with id ' + faceSnapId);
+       }
+
+       return foundFaceSnap;
+    }
+
+    snapFaceSnapById(faceSnapId: string, snapType: SnapType): void {
+        const faceSnap = this.getFaceSnapById(faceSnapId);
+
+        faceSnap.snap(snapType);
     }
 }

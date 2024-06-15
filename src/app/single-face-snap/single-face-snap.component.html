@@ -1,0 +1,17 @@
+<h2>{{ faceSnap.title | titlecase }}</h2>
+<a routerLink="/facesnaps">BACK</a>
+<p>
+    📍
+    @if (faceSnap.location) {
+        {{ faceSnap.location }}
+    } @else {
+        Non spécifié
+    }
+</p>
+<img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
+<p>Mis en ligne le : {{ faceSnap.creatingAt | date: 'dd MMMM yyyy à HH:mm' }}</p>
+<p>{{ faceSnap.description }}</p>
+<p>
+    <button (click)="onSnap()">{{ buttonTxt }}</button>
+    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">👍🏻 {{ faceSnap.snaps }}</span>
+</p>

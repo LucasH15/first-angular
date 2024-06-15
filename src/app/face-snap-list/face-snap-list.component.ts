@@ -13,7 +13,10 @@ import { FaceSnapsService } from '../services/face-snaps.service';
       NgForOf
   ],
   templateUrl: './face-snap-list.component.html',
-  styleUrl: './face-snap-list.component.scss'
+  styleUrl: './face-snap-list.component.scss',
+    host: {
+      '[class.face-snap-container]': 'true',
+    }
 })
 export class FaceSnapListComponent implements OnInit {
     snaps!: FaceSnap[];

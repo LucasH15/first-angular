@@ -1,3 +1,22 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SingleFaceSnapComponent } from './single-face-snap/single-face-snap.component';
+
+export const routes: Routes = [
+    {
+        path: '',
+        component: LandingPageComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'facesnaps',
+        component: FaceSnapListComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'facesnaps/:id',
+        component: SingleFaceSnapComponent
+    }
+];
