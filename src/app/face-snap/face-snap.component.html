@@ -1,2 +1,3 @@
 <h2>{{ faceSnap.title | titlecase }}</h2>
-<button (click)="onViewFaceSnap()">VIEW</button>
+<img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
+<button (click)="onViewFaceSnap()">Voir les détails</button>
